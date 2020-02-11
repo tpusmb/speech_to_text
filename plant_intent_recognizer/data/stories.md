@@ -12,7 +12,7 @@
 * suivre_etat_plante
   - utter_suivre_etat_plante
 * afficher_etat_plante
-  - utter_entretenir_plante
+  - utter_afficher_etat_plante
   
 ## entretien rapide
 * entretenir_plante
@@ -20,7 +20,7 @@
 
 ## afficher l'etat rapide
 * afficher_etat_plante
-  - utter_entretenir_plante
+  - utter_afficher_etat_plante
 
 ## fin
 * fin
