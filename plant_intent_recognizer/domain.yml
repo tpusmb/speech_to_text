@@ -4,6 +4,13 @@ intents:
   - suivre_etat_plante
   - afficher_etat_plante
   - entretenir_plante
+  - afficher_progres_du_jardinier
+  - afficher_courbe_progression
+  - afficher_niveau
+  - planter_une_nouvelle_plante
+  - planter_un_bulbe
+  - positif
+  - negatif
   - plante_challenge
 
 actions:

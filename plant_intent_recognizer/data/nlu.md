@@ -2,6 +2,7 @@
 - salut
 - bonjour
 - hello plante
+- coucou
 
 ## intent:fin
 - à plus tard
@@ -29,7 +30,7 @@
 - que puis je faire pour t'aider
 - quelles actions faire pour t'entretenir
 
-## intent:aafficher_progré_du_jardinier
+## intent:afficher_progres_du_jardinier
 - Comment est-ce que je m'en sors ?
 - Suis-je un bon jardinier  
 
@@ -46,12 +47,12 @@
 - Quelle est mon niveau actuel
 - Montre moi mon classement
 
-## intent:Planter_une_nouvelle_plante
+## intent:planter_une_nouvelle_plante
 - Je souhaite planter une nouvelle plante
 - Je veux rajouter une plante au potager
 - Agrandissons le jardin
 
-## intent:Planter_un_bulbe
+## intent:planter_un_bulbe
 - Je souhaite planter un bulbe
 - Je veux ajouter un bulbe au jardin
 - Aide moi à planter un bulbe
@@ -63,6 +64,8 @@
 - C'est tout bon pour moi
 - J'ai finis
 - Cette tâche est faite
+- ensuite
+- aprés ?
 
 ## intent:negatif
 - Attend je n'ai pas finis
