@@ -1,6 +1,7 @@
 """
 File to manage the speech to text for our plant.
 """
+from contextlib import suppress
 from typing import Union
 
 import speech_recognition as sr
@@ -21,11 +22,9 @@ def speech_to_text(noise_level: int = None) -> Union[None, str]:
             r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
 
-    try:
+    with suppress(sr.UnknownValueError, sr.RequestError):
         # Call the google voice recognizer
         return r.recognize_google(audio, language="fr-FR")
-    except (sr.UnknownValueError, sr.RequestError):
-        return
 
 
 if __name__ == "__main__":
