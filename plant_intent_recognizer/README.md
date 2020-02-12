@@ -9,4 +9,4 @@ We do not use the full capacities of rasa but [only the NLU part](https://rasa.c
 - Start the server with:  
   `rasa run -m models --enable-api --cors “*” --debug`
 - Interact with the server with an HTTP POST request like:  
-  `curl localhost:5005/model/parse -d '{"text":"hello"}'`
+  `curl localhost:5005/model/parse -d '{"text":"hello"}`
