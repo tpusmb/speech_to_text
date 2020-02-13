@@ -2,7 +2,7 @@ import threading
 from time import sleep, time
 from typing import Callable, Dict, List
 
-from basic_speech_to_text import speech_to_text, is_keyword_said
+from basic_speech_to_text import speech_to_text, is_keyword_said, is_wake_up_word_said
 from plant_intent_recognizer.detect_intent import RasaIntent, Intent
 
 CALLBACK_INTENTS: Dict[Intent, List[Callable[[], None]]] = {}
@@ -70,7 +70,7 @@ class VoiceController:
                 elif time() - self.last_active_time > self.active_time_delay:
                     print("SLEEP MODE", flush=True)
                     self.active = False
-            elif is_keyword_said(noise_level=1500):
+            elif is_wake_up_word_said():
                 print("ACTIVE MODE", flush=True)
                 self.active = True
                 self.last_active_time = time()

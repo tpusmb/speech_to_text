@@ -1,16 +1,55 @@
 """
 File to manage the speech to text for our plant.
 """
+import struct
 from contextlib import suppress
+from time import time
 from typing import Union
 
+import pyaudio
 import speech_recognition as sr
+import pvporcupine
+
+
+def is_wake_up_word_said(input_device_index=13, sensitivity=0.5, keyword='hey pico', timeout=10):
+    keyword_file_path = [pvporcupine.KEYWORD_FILE_PATHS[keyword]]
+    num_keywords = len(keyword_file_path)
+
+    porcupine = pvporcupine.create(
+        library_path=pvporcupine.LIBRARY_PATH,
+        model_file_path=pvporcupine.MODEL_FILE_PATH,
+        keyword_file_paths=keyword_file_path,
+        sensitivities=[sensitivity] * num_keywords)
+
+    pa = pyaudio.PyAudio()
+    audio_stream = pa.open(
+        rate=porcupine.sample_rate,
+        channels=1,
+        format=pyaudio.paInt16,
+        input=True,
+        frames_per_buffer=porcupine.frame_length,
+        input_device_index=input_device_index)
+
+    start = time()
+    keyword_said = False
+    while not keyword_said and time() - start < timeout:
+        pcm = audio_stream.read(porcupine.frame_length)
+        pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
+
+        if porcupine.process(pcm):
+            keyword_said = True
+    audio_stream.close()
+    porcupine.delete()
+    return keyword_said
 
 
 def is_keyword_said(keyword="ok", noise_level: int = None) -> bool:
     """
     Function called to check if the keyword is said
     Work offline to preserve privacy at home
+
+    This function is DEPRECATED
+
     :param: keyword the word to be said only to start (SHOULD BE CAREFULLY CHOSEN/TESTED)
     :param: noise_level the level of ambient noise used to detect the end of a phrase
     :return: Is the keyword said or not
